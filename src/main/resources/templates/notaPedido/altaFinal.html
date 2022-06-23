@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://kit.fontawesome.com/d25b889486.js"
+	crossorigin="anonymous"></script>
+<title>TP OO2 GRUPO 15</title>
+<body>
+	<div>
+		
+		<th>Crear una Nota Pedido para examen Final</th>
+		<br> 
+		<hr>
+
+		<div>
+			<form action="#" th:action="@{/NotaPedido/create}"
+				th:object="${final}" method="POST">
+
+				<label>Fecha del examen final</label>
+				<div>
+					<input id="fecha" type="date" th:field="*{fechaFinal}" required>
+				</div>
+				<br> 
+				
+				<label>Cantidad de alumnos</label>
+				<p>
+					<input type="number" min = "1" th:field="*{cantEstudiantes}" placeholder="cantidad de estudiantes" required>
+				</p>
+
+				<!-- <label>Seleccionar materia</label>
+				<select  th:field="${final.materia}" >
+					<option th:each="mat : ${materias}" th:value="${mat.idMateria}" th:text="${mat.materia}">
+					</option>
+				</select>  -->
+				
+				<div>
+                <label>Seleccionar materia</label>
+                <div>
+                    <select th:field="${final.materia}" >
+                        <option th:each= "materia:${materias}" th:value="${materia.idMateria}" th:text="${materia.materia}" required></option>
+                    </select>
+                </div>
+            </div>
+				<br>
+				<br>
+				<label>Seleccionar Aula</label>
+				<select id="aula" th:field="*{aula}" name="aula">
+					<option th:each="aulai : ${aulas}" th:value="${aulai.idAula}" th:text="${aulai.edificio.edificio} + ' ' + ${aulai.numero}">
+					</option>
+				</select> 
+				<br>
+
+				<label>Turno</label>
+				<div>
+					<input type="radio" id="M" value="M" th:field="*{turno}"
+						th:required="true"> <label for="M">Mañana</label> <input
+						type="radio" id="T" value="T" th:field="*{turno}"
+						th:required="true"> <label for="T">Tarde</label> <input
+						type="radio" id="N" value="N" th:field="*{turno}"
+						th:required="true"> <label for="N">Noche</label>
+				</div>
+				
+				<label>Observaciones</label>
+				<p>
+					<input type="text" th:field="*{observaciones}" placeholder="Observaciones">
+				</p>
+
+				<button type="submit">Crear NotaPedido Final</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<p>Listado Notas Pedido
+	<p />
+	<table border="1px">
+		<thead>
+			<tr>
+				<th>ID Nota Pedido</th>
+				<th>Fecha</th>
+				<th>Turno</th>
+				<th>Aula</th>
+				<th>Cant Estudiantes</th>
+				<th>Materia</th>
+				<th>Observaciones</th>
+				<th>Accion 1</th>
+				<th>Accion 2</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="notapedido : ${notaspedido}">
+				<td><span th:text="${notapedido.idNotaPedido}" /></td>
+
+				<td th:text="${notapedido.fechaFinal}"></td>
+				<td th:text="${notapedido.turno}"></td>
+				<td th:text="${notapedido.aula}"></td>
+				<td th:text="${notapedido.cantEstudiantes}"></td>
+				<td th:text="${notapedido.materia}"></td>
+				<td th:text="${notapedido.observaciones}"></td>
+				<td>
+					<form action="#" th:action="@{/NotaPedido/delete/} + ${notapedido.idNotaPedido}" method="POST">
+
+						<button type="submit">
+							<i>Eliminar</i>
+						</button>
+					</form>
+				</td>
+				<td>
+					<form action="#" th:action="@{/NotaPedido/update/} + ${notapedido.idNotaPedido}"method="GET">
+
+						<button type="submit">
+							<i>Modificar</i>
+						</button>
+					</form>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="/NotaPedido/nuevo">Crear</a>
+
+</body>
+</html>
